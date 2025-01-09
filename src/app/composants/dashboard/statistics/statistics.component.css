@@ -1,0 +1,23 @@
+/* Style pour la carte Mat */
+.mat-card {
+  width: 100%;
+  max-width: 600px; /* Ajustez la largeur maximale selon vos besoins */
+  margin: 20px auto; /* Centrage horizontal avec une marge */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Ombre légère */
+}
+
+/* Style pour le titre de la carte */
+.mat-card-title {
+  font-size: 20px;
+  font-weight: bold;
+}
+
+/* Style pour le contenu de la carte */
+.mat-card-content {
+  padding: 16px;
+}
+
+/* Style pour le graphique ngx-charts */
+.chart-container {
+  height: 300px; /* Hauteur du graphique */
+}

@@ -1,0 +1,46 @@
+<div class="header-container">
+  <div class="header-content">
+    <h2 class="titre">
+      <i class="fa-solid fa-list"></i>
+      Liste des ordonnances
+    </h2>
+
+    <div class="button-group">
+      <button [routerLink]="['/statOrdonnance']" class="boutonStatistiques" style="background-color:rgb(248, 179, 50); color:rgba(49, 49, 49, 0.644) ">
+        <i class="fa-solid fa-chart-simple"></i>
+        <span class="tooltiptext">Statistiques</span>
+      </button>
+
+      &nbsp;&nbsp;
+
+      <button [matMenuTriggerFor]="menu" class="boutonAjouter">
+        <i class="fa-solid fa-square-plus boutonAjouter"></i>
+      </button>
+    </div>
+
+    <mat-menu #menu="matMenu">
+      <button mat-menu-item (click)="openDialog()">
+        <span>Importer une ordonnance</span>
+      </button>
+      <button mat-menu-item (click)="openDialogRemplirOrd()">
+        <span>Remplir ordonnance</span>
+      </button>
+    </mat-menu>
+  </div>
+  </div>
+<div class="card-container">
+  <div class="card" *ngFor="let ordonnance of listOrdonnances; let i = index" [ngClass]="{'first-in-row': i % 4 === 0}">
+    <div class="card-header" style="text-align:left; padding:15px">
+      <p style="display: flex; align-items: center; margin: 0;">
+        <i class="fa-solid fa-calendar-days" style="margin-right: 5px; color:rgb(0, 168, 0)"></i>
+        {{ ordonnance.dateCreation |date }}
+      </p>
+    </div>
+    <div class="card-body">
+      <img *ngIf="ordonnance.photo" [src]="'data:image/png;base64,' + ordonnance.photo" class="card-img-top" alt="Photo de l'ordonnance">
+    </div>
+    <div class="card-footer">
+      <button class="btn btn-primary" [routerLink]="['/ordonnances',ordonnance.id]"><i class="fa-solid fa-eye"></i> Détails</button>
+    </div>
+  </div>
+</div>

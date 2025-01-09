@@ -1,0 +1,33 @@
+<div class="header-container">
+  <div class="header-content">
+    <h2 class="titre">
+      <i class="fa-solid fa-chart-simple"></i>
+      Statistiques
+    </h2>
+  </div>
+  </div>
+<div style="display: flex;">
+  <div style="width: 50%; margin-right: 50px;">
+    <canvas baseChart
+            [datasets]="lineChartData"
+            [labels]="lineChartLabels"
+            [options]="lineChartOptions"
+            [legend]="lineChartLegend">
+    </canvas>
+  </div>
+  <div style="width: 50%; margin-left: 10px;">
+    <canvas baseChart
+            [datasets]="barChartData"
+            [labels]="barChartLabels"
+            [options]="barChartOptions"
+            [legend]="barChartLegend">
+    </canvas>
+  </div>
+</div>
+
+<div class="chart-container">
+  <canvas baseChart
+          [datasets]="chartData.datasets"
+          [labels]="chartData.labels">
+  </canvas>
+</div>

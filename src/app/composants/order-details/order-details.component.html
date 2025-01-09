@@ -1,0 +1,78 @@
+<div class="order-details mat-elevation-z8">
+  <mat-card>
+    <mat-card-header>
+      <div mat-card-avatar class="order-avatar"></div>
+      <mat-card-title style="color:#007bff">Commande de {{order?.customerName}}</mat-card-title>
+      <mat-card-subtitle>{{order?.deliveryDate | date:'longDate'}}</mat-card-subtitle>
+    </mat-card-header>
+
+    <mat-card-content>
+      <div class="order-summary">
+      <!--  <p><strong>ID de la commande:</strong> {{order?.id}}</p>-->
+
+        <p><strong>Adresse:</strong> {{order?.adresse}}</p>
+        <p><strong>Total:</strong> {{order?.total | currency}}</p>
+        <p><strong>Status:</strong> {{order?.status}}</p>
+
+      </div>
+
+      <!-- Uncomment for order status timeline -->
+      <!--
+      <div class="order-status">
+        <h3>État de la commande</h3>
+        <mat-vertical-stepper [linear]="false">
+          <mat-step *ngFor="let status of order?.statuses; let i = index" [completed]="i < order?.statuses?.length - 1">
+            <div class="timeline-item-content">
+              <p>{{status.name}} - {{status.date | date:'short'}} par {{status.updatedBy}}</p>
+            </div>
+          </mat-step>
+        </mat-vertical-stepper>
+      </div>
+      -->
+
+      <mat-form-field appearance="fill" class="status-update">
+        <mat-label>Changer le statut</mat-label>
+        <mat-select [(value)]="order.currentStatus">
+          <mat-option *ngFor="let status of availableStatuses" [value]="status">{{status}}</mat-option>
+        </mat-select>
+      </mat-form-field>
+      <button mat-raised-button color="primary" (click)="updateStatus(order.currentStatus)">Mettre à jour l'état</button>
+    </mat-card-content>
+
+    <!-- Google Maps componen-->
+    <app-google-map [address]="order.adresse"></app-google-map>
+
+
+    <!-- Font import (if necessary) -->
+    <!-- <link href='//fonts.googleapis.com/css?family=Roboto:200,400,600' rel='stylesheet' type='text/css'> -->
+
+    <!-- Uncomment for history timeline -->
+    <!--
+    <div class="history-tl-container">
+      <ul class="tl">
+        <li class="tl-item" ng-repeat="item in retailer_history">
+          <div class="timestamp">
+            3rd March 2015<br> 7:00 PM
+          </div>
+          <div class="item-title">Start from Shire</div>
+          <div class="item-detail">Don't forget the ring</div>
+        </li>
+        <li class="tl-item" ng-repeat="item in retailer_history">
+          <div class="timestamp">
+            19th March 2015<br> 3:00 PM
+          </div>
+          <div class="item-title">Kill some Orcs</div>
+          <div class="item-detail">Don't enter the caves!!</div>
+        </li>
+        <li class="tl-item" ng-repeat="item in retailer_history">
+          <div class="timestamp">
+            1st June 2015<br> 7:00 PM
+          </div>
+          <div class="item-title">Throw that goddamn ring in the lava</div>
+          <div class="item-detail">Also, throw that Gollum too</div>
+        </li>
+      </ul>
+    </div>
+    -->
+  </mat-card>
+</div>

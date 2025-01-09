@@ -1,0 +1,24 @@
+
+Syrine Kaabi
+.header-container {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 20px;
+}
+
+.header-content {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: rgba(165, 182, 238, 0.801);
+  color: white;
+  padding: 10px 15px;
+  border-radius: 5px;
+  width: 100%;
+  max-width: calc(25% * 4 - 20px);
+}
+
+.titre{
+  color:rgb(255, 255, 255);
+  margin-top: 8px;
+}

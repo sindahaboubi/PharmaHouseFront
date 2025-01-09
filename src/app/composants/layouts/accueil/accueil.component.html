@@ -1,0 +1,56 @@
+<div class="background-container">
+  <div class="overlay">
+    <div class="content">
+      <p class="reminder-text">Bienvenue sur <strong>PharmaHouse</strong>, votre partenaire quotidien pour une vie plus saine et équilibrée. <br><br>Ensemble, faisons de chaque jour un pas vers le mieux-être.</p>
+      <br><div class="buttons">
+        <button class="btn" id="inscriptionBtn"><i class="fa-solid fa-user"></i> Mon compte</button>
+        <button class="btn" id="connexionBtn"><i class="fa-solid fa-right-from-bracket"></i> Me déconnecter</button>
+      </div>
+    </div>
+  </div>
+  <img src="assets/photo1.jpg" alt="Image 1" class="active">
+  <img src="assets/photo2.jpg" alt="Image 2">
+  <img src="assets/photo3.jpg" alt="Image 3">
+  <img src="assets/photo4.jpg" alt="Image 4">
+</div>
+
+
+<div class="about-section">
+  <div class="about-content">
+    <div class="about-image">
+      <img src="assets/photo5.jpg" alt="PharmaHouse">
+    </div>
+    <div class="about-text">
+      <h2>À propos de nous</h2>
+      <p>
+        PharmaHouse rend la gestion de votre santé facile et efficace. Suivez vos médicaments, organisez vos ordonnances, et recevez des rappels pour les renouvellements. Trouvez la pharmacie la plus proche, passez vos commandes en ligne, et faites-vous livrer à domicile. Avec nos notifications régulières, vous ne manquerez jamais une prise.
+      </p>
+      <button class="btn" id="voirPlusBtn" [routerLink]="['/propos']">Voir plus</button>
+    </div>
+  </div>
+</div>
+
+
+<div class="orders-title">
+  <h2 style="font-size:30px"><i class="fa-solid fa-house-medical"></i> Mes ordonnances</h2>
+</div>
+
+<div class="orders-container">
+  <div *ngFor="let ordonnance of listOrdonnances" class="order-card">
+    <div class="order-header">
+      <p class="order-date"><i class="fa-regular fa-clock" style="color:green; font-weight:bold"></i> Créé le {{ ordonnance.dateCreation | date: 'dd/MM/yyyy' }}</p>
+      <p class="order-status" [ngClass]="{'active': ordonnance.etat === 1, 'inactive': ordonnance.etat === 0}">
+        {{ ordonnance.etat === 1 ? 'Active' : 'Inactive' }}
+      </p>
+    </div>
+    <img *ngIf="ordonnance.photo" [src]="'data:image/png;base64,' + ordonnance.photo" alt="Photo de l'ordonnance" class="order-image">
+    <div class="order-details">
+      <span class="btnDetails" (click)="viewDetails(ordonnance.id)" [routerLink]="['/ordonnances',ordonnance.id]"><i class="fa-solid fa-circle-info"></i></span>
+    </div>
+  </div>
+</div>
+<br>
+<div class="center-button-container">
+  <button [routerLink]="['/ordonnances']" class="btnVoirPlus"><i class="fa-solid fa-plus"></i> Voir plus</button>
+</div>
+

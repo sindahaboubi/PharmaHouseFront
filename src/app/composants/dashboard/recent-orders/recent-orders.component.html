@@ -1,0 +1,39 @@
+<div class="header-container">
+  <div class="header-content" style="  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: rgba(165, 182, 238, 0.801);
+  color: white;
+  padding: 10px 15px;
+  border-radius: 5px;
+  width: 100%;
+  max-width: calc(25% * 4 - 20px);">
+    <h2 class="titre">
+      <i class="fa-solid fa-list"></i>
+      Mes commandes
+    </h2>
+
+    <div class="button-group">
+      <button  [routerLink]="['/Dashboard']" class="boutonStatistiques" style="background-color:rgb(248, 179, 50); color:rgba(0, 0, 0, 0.644); ; border-color:transparent; padding:5px">
+        <i class="fa-solid fa-chart-simple"></i>
+        <span class="tooltiptext"> &nbsp;Statistiques</span>
+      </button>
+    </div>
+  </div>
+<br>
+  <mat-card class="mat-card" style="width:98%">
+    <mat-card-header>
+      <mat-card-title>Commandes Récentes</mat-card-title>
+    </mat-card-header>
+    <mat-card-content class="mat-card-content">
+      <mat-list>
+        <mat-list-item *ngFor="let order of orders" class="mat-list-item">
+          <h4 matLine>{{ order.id }} - {{ order.customer }}</h4>
+          <p matLine>Montant : {{ order.amount }}€</p>
+          <p matLine>Statut : {{ order.status }}</p>
+        </mat-list-item>
+      </mat-list>
+    </mat-card-content>
+  </mat-card>
+
+</div>

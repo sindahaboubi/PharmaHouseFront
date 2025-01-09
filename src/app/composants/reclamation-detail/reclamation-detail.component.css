@@ -1,0 +1,16 @@
+.reclamation-detail-container {
+  max-width: 800px;
+  margin: auto;
+  padding: 20px;
+}
+
+.full-width {
+  width: 100%;
+}
+.order-avatar {
+  background-image: url('/assets/logo.png');
+  background-size: cover;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+}

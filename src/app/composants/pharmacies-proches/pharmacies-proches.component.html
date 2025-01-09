@@ -1,0 +1,34 @@
+<div class="header-container">
+  <div class="header-content">
+    <h2 class="titre">
+      <i class="fa-solid fa-hospital"></i>
+      Les pharmacies proches
+    </h2>
+  </div>
+  </div>
+<div style="margin:2%;">
+  <pre class="text-center">
+    Ci-dessous les pharmacies les plus proches de vous. Si vous avez changé votre localisation, saisissez votre nouvelle ville.
+    Une fois terminé, cliquez sur le bouton "Valider".
+  </pre>
+  <form class="example-form text-center">
+    <mat-form-field class="example-full-width" appearance="fill">
+      <mat-label>Ville</mat-label>
+      <input matInput aria-label="Ville" id="input" #adr>
+    </mat-form-field>
+    <br>
+    <button mat-button class="btn btn-primary mb-2" style="background-color: rgb(228, 225, 225);color:black" type="button" (click)="addressChange(adr.value)">Valider</button>
+  </form>
+  <div class="text-center">
+    <iframe
+      id="frame"
+      width="600"
+      height="450"
+      style="border:0; margin-bottom: 10%;"
+      loading="lazy"
+      allowfullscreen
+      referrerpolicy="no-referrer-when-downgrade"
+      alt="carte">
+    </iframe>
+  </div>
+</div>

@@ -1,0 +1,183 @@
+.container {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
+  height: 50vh;
+  padding-top: 10px;
+}
+
+.medicament-card {
+  width: 100%;
+  max-width: 800px;
+  margin: 20px;
+}
+
+.medicament-select {
+  width: 100%;
+}
+
+.mat-select-panel {
+  max-width: unset !important;
+}
+
+.option-content {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 8px 16px;
+  box-sizing: border-box;
+}
+
+.medicament-image {
+  width: 26px;
+  height: 26px;
+  margin-right: 8px;
+  border-radius: 50%;
+  border: 1px solid #ccc;
+}
+
+.selected-medicaments {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+  justify-content: center;
+  padding: 20px;
+}
+
+.medicament-item {
+  position: relative;
+  width: 900px;
+  padding: 15px;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  background-color: #f9f9f9;
+}
+
+
+.medicament-item:hover {
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
+  transform: translateY(-5px);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.medicament-image-container {
+  width: 100%;
+  text-align: center;
+  margin-bottom: 10px;
+}
+
+.medicament-image2 {
+  max-width: 15%;
+  max-height: 15%;
+  object-fit: cover;
+  border-radius: 8px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.medicament-title2 {
+  display: block;
+  text-align: center;
+  font-size: 18px;
+  font-weight: bold;
+  margin-bottom: 5px;
+  color: #333333;
+}
+
+.medicament-subtitle {
+  display: block;
+  text-align: center;
+  font-size: 14px;
+  font-style: italic;
+  color: #666666;
+  margin-bottom: 10px;
+}
+
+.medicament-detail-fields {
+  margin-top: 10px;
+  font-size: 11px;
+}
+
+.medicament-detail-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+.medicament-detail-field {
+  flex: 1;
+  margin-bottom: 10px;
+}
+
+.medicament-detail-field label {
+  display: block;
+  font-weight: bold;
+  margin-bottom: 5px;
+  color: #666666;
+}
+
+.medicament-detail-field input {
+  width: 100%;
+  padding: 8px;
+  font-size: 14px;
+  border: 1px solid #dddddd;
+  border-radius: 4px;
+}
+
+.medicament-detail-field input[type="date"] {
+  padding: 8px;
+}
+
+.medicament-detail-field input[type="number"] {
+  padding: 8px;
+}
+
+.medicament-detail-field input::placeholder {
+  color: #aaaaaa;
+}
+
+.type {
+  position: absolute;
+  top: 10px;
+  left: 10px;
+  padding: 5px 10px;
+  border-radius: 4px;
+  font-size: 14px;
+  font-weight: bold;
+}
+
+.medicament-pillule{
+  color: rgb(93, 189, 49);
+}
+
+.medicament-serum {
+  color: orange;
+}
+
+.medicament-seringue{
+  color:rgb(221, 0, 210);
+}
+
+.medicament-creme{
+  color:rgb(223, 0, 0);
+}
+
+.medicament-sachet{
+  color:rgb(0, 212, 212);
+}
+
+.dosage{
+  color:gray;
+}
+
+.dateExpiration{
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  padding: 5px 10px;
+  border-radius: 4px;
+  font-size: 14px;
+  color:red;
+}

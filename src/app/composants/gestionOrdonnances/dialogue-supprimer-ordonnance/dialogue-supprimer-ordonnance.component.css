@@ -1,0 +1,41 @@
+.mat-title {
+  font-size: 1.5rem;
+  font-weight: bold;
+  text-align: center;
+}
+
+.mat-body {
+  text-align: center;
+  padding: 1rem 0;
+}
+
+.mat-actions {
+  display: flex;
+  justify-content: center;
+  margin-top: 1rem;
+}
+
+.action-button {
+  margin: 0 0.5rem;
+}
+
+.action-button.yes-button {
+  background-color: red;
+  color: white;
+}
+
+.action-button.no-button{
+  background-color: rgb(0, 0, 99);
+  color:white;
+}
+
+.mat-dialog-container {
+  background-color: rgba(0, 0, 0, 0.5);
+}
+
+.mat-dialog-content {
+  background-color: white;
+  border-radius: 8px;
+  padding: 1rem;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}

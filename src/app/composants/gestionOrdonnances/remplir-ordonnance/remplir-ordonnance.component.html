@@ -1,0 +1,88 @@
+<div class="container">
+  <mat-card class="medicament-card">
+    <mat-card-content>
+      <mat-form-field appearance="fill" class="medicament-select">
+        <mat-label>Sélectionner un médicament</mat-label>
+        <mat-select name="selectMedicament" (selectionChange)="onSelectMedicament($event.value)">
+          <input matInput placeholder="Rechercher un médicament" [(ngModel)]="searchKeyword" (ngModelChange)="filterMedicaments()">
+          <mat-option class="purple-background" *ngFor="let medicament of filteredMedicaments" [value]="medicament.id">
+            <div class="option-content">
+              <img [src]="getMedicamentImageUrl(medicament)" alt="{{ medicament.titre }}" class="medicament-image">
+              <span class="medicament-title">{{ medicament.titre }}</span>
+              <button mat-icon-button class="add-button">
+                <mat-icon>add</mat-icon>
+              </button>
+            </div>
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
+
+      <div class="selected-medicaments">
+        <div *ngFor="let prise of prises; let i = index" class="medicament-item">
+          <div class="medicament-header">
+            <div class="medicament-image-container">
+              <img [src]="getMedicamentImageUrl(prise.medicament)" class="medicament-image2">
+            </div>
+          </div>
+          <div class="medicament-detail-fields">
+            <div class="medicament-detail-row">
+              <span class="type">
+                <div class="medicament-pillule" *ngIf="prise.medicament.unite.libelle == 'Pillule'">
+                  <i class="fa-solid fa-pills"></i> Pillule <span class="dosage">({{ prise.medicament.dosage }} mg)</span>
+                </div>
+
+                <div class="medicament-serum" *ngIf="prise.medicament.unite.libelle=='Sérum'">
+                  <i class="fa-solid fa-bottle-droplet"></i> Sérum <span class="dosage">({{prise.medicament.dosage}} mg)</span>
+                </div>
+
+                <div class="medicament-seringue" *ngIf="prise.medicament.unite.libelle=='Seringue'">
+                  <i class="fa-solid fa-syringe"></i> Seringue <span class="dosage">({{prise.medicament.dosage}} mg)</span>
+                </div>
+
+                <div class="medicament-creme" *ngIf="prise.medicament.unite.libelle=='Crème'">
+                  <i class="fa-solid fa-droplet"></i> Crème <span class="dosage">({{prise.medicament.dosage}} mg)</span>
+                </div>
+
+                <div class="medicament-sachet" *ngIf="prise.medicament.unite.libelle=='Sachet'">
+                  <i class="fa-solid fa-droplet"></i> Sachet <span class="dosage">({{prise.medicament.dosage}} mg)</span>
+                </div>
+              </span>
+
+              <span class="dateExpiration">
+                <div>
+                  <span>Expire le {{ prise.medicament.dateExpiration | date }}</span>
+                </div>
+              </span>
+
+              <div class="medicament-detail-field">
+                <label>Nombre de fois/ jour</label>
+                <input type="number" placeholder="Ex: 2" min="1" [(ngModel)]="prise.priseJour">
+              </div>
+
+              <div class="medicament-detail-field">
+                <label>Nombre de fois à midi</label>
+                <input type="number" placeholder="Ex: 1" min="1" [(ngModel)]="prise.priseMidi">
+              </div>
+
+              <div class="medicament-detail-field">
+                <label>Nombre de fois le soir</label>
+                <input type="number" placeholder="Ex: 1" min="1" [(ngModel)]="prise.priseSoir">
+              </div>
+
+              <div class="medicament-detail-field">
+                <label>Début du traitement</label>
+                <input type="date" placeholder="Sélectionnez une date" [(ngModel)]="prise.dateDebutPrise">
+              </div>
+
+              <div class="medicament-detail-field">
+                <label>Fin du traitement</label>
+                <input type="date" placeholder="Sélectionnez une date" [(ngModel)]="prise.dateFinPrise">
+              </div>
+            </div>
+          </div>
+        </div>
+        <button class="btn btn-success" *ngIf="selectedMedicaments.length != 0" (click)="onSave()">Enregistrer</button>
+      </div>
+    </mat-card-content>
+  </mat-card>
+</div>

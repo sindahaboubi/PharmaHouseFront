@@ -1,0 +1,126 @@
+<div class="ordonnance-details-container">
+  <div class="ordonnance-photo">
+    <img *ngIf="ordonnance.photo" [src]="'data:image/jpeg;base64,' + ordonnance.photo" alt="Photo de l'ordonnance" (click)="openImageInNewTab()" style="cursor: pointer;">
+    <span *ngIf="!ordonnance.photo">Aucune photo disponible</span>
+    <div class="overlay" (click)="openImageInNewTab()">Cliquez pour agrandir</div>
+  </div>
+
+  <div class="ordonnance-info">
+    <div class="ordonnance-header">
+      <h2 class="header-title">Informations sur l'ordonnance</h2>
+      <p style="color:green;font-weight: bold;" *ngIf="ordonnance.etat==1" class="active-state"><i class="fa-solid fa-check"></i> Active</p>
+      <p style="color:rgb(218, 16, 16);font-weight: bold;" *ngIf="ordonnance.etat==0" class="active-state"><i class="fa-solid fa-x"></i> Inactive</p>
+
+      <p class="date-creation"><i class="fa-solid fa-calendar-days"></i> Créé le: <span>{{ ordonnance.dateCreation | date }}</span></p>
+      <p class="medicaments-count"><i class="fa-solid fa-pills"></i> Nombre de médicaments: <span>{{ nombreMedicaments }}</span></p>
+
+      <hr>
+      <div class="toggle-container" (click)="toggleInactiverButton()">
+        <i [class]="showInactiverButton ? 'fa-solid fa-angle-up' : 'fa-solid fa-angle-down'"></i> Gérer
+      </div>
+
+      <div class="dropdown-content" *ngIf="showInactiverButton" style="display: flex; justify-content: center;">
+
+        <button *ngIf="ordonnance.etat === 1"
+                class="btn btn-warning"
+                (click)="updateEtatOrdonnance(0)"
+                title="Inactiver"
+                style="position: relative;">
+          <i class="fa-solid fa-x"></i>
+        </button> &nbsp;
+
+        <button *ngIf="ordonnance.etat === 0"
+                class="btn btn-success"
+                (click)="updateEtatOrdonnance(1)"
+                title="Activer"
+                style="position: relative;">
+          <i class="fa-solid fa-check"></i>
+        </button>&nbsp;
+
+      <button class="btn btn-danger"
+              title="Supprimer"
+              style="position: relative;"
+              (click)="openDialogAndDelete(ordonnance.id)">
+        <i class="fa-solid fa-trash"></i>
+      </button>
+
+
+
+      </div>
+
+    </div>
+  </div>
+</div>
+
+
+
+
+
+
+<div class="prescribed-medications-title">
+  <h3 style="font-size: 20px; font-weight:bold; color:green">
+    <i class="fas fa-pills"></i> Médicaments prescrits
+  </h3>
+</div>
+
+<table class="table">
+  <thead>
+    <tr style="text-align: center;">
+      <th>Photo</th>
+      <th>Médicament</th>
+      <th>Dosage</th>
+      <th>Nombre/jour</th>
+      <th>Nombre/Midi</th>
+      <th>Nombre/Soir</th>
+      <th>De</th>
+      <th>à</th>
+      <th>Type</th>
+    </tr>
+  </thead>
+  <tbody style="text-align: center;">
+    <tr *ngFor="let prise of prises | paginate: { itemsPerPage: 2, currentPage: page }">
+      <td>
+        <img *ngIf="prise.medicament?.photo" [src]="'data:image/jpeg;base64,' + prise.medicament.photo" alt="Photo du médicament" width="100" height="100">
+        <span *ngIf="!prise.medicament?.photo">Aucune photo disponible</span>
+      </td>
+      <td>{{ prise.medicament?.titre }}</td>
+      <td>{{ prise.medicament?.dosage }}</td>
+      <td><i class="fa-solid fa-sun" style="color:rgb(255, 230, 0)"></i> {{ prise.priseJour }} fois</td>
+      <td><i class="fa-solid fa-utensils" style="color:orange"></i> {{ prise.priseMidi }} fois</td>
+      <td><i class="fa-solid fa-moon" style="color:blue"></i> {{ prise.priseSoir }} fois</td>
+      <td><i class="fa-solid fa-calendar-days" style="color:rgb(0, 168, 0)"></i> {{ prise.dateDebutPrise | date }}</td>
+      <td><i class="fa-solid fa-calendar-days" style="color:red"></i> {{ prise.dateFinPrise | date }}</td>
+      <td>
+        <div class="medicament-sachet" *ngIf="prise.medicament.unite.libelle=='Sachet'">
+          <i class="fa-solid fa-droplet"></i> Sachet
+        </div>
+
+        <div class="medicament-creme" *ngIf="prise.medicament.unite.libelle=='Crème'">
+          <i class="fa-solid fa-droplet"></i> Crème
+        </div>
+
+        <div class="medicament-pillule" *ngIf="prise.medicament.unite.libelle == 'Pillule'">
+          <i class="fa-solid fa-pills"></i> Pillule
+        </div>
+
+        <div class="medicament-serum" *ngIf="prise.medicament.unite.libelle=='Sérum'">
+          <i class="fa-solid fa-bottle-droplet"></i> Sérum
+        </div>
+
+        <div class="medicament-seringue" *ngIf="prise.medicament.unite.libelle=='Seringue'">
+          <i class="fa-solid fa-syringe"></i> Seringue
+        </div>
+      </td>
+    </tr>
+  </tbody>
+</table>
+
+<pagination-controls (pageChange)="page = $event"></pagination-controls>
+
+<div *ngIf="!ordonnance && ordonnance !== undefined">
+  <p>Chargement en cours...</p>
+</div>
+
+<div *ngIf="ordonnance === undefined">
+  <p>Erreur lors du chargement des détails de l'ordonnance.</p>
+</div>
